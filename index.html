@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distgroup - Натуральные компоненты для производства косметики</title>
+    <meta name="description" content="Официальный дистрибьютор АО 'Алуштинский эфиромасличный совхоз-завод' и ООО 'Ароматы натуральных растений Абхазии'">
+    <meta name="keywords" content="эфирные масла, гидролаты, CO2 экстракты, натуральные масла, косметика">
+    <link rel="icon" href="images/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4CAF50;
+            --primary-light: #81C784;
+            --primary-dark: #388E3C;
+            --accent: #2E7D32;
+            --bg-light: #F1F8E9;
+            --white: #FFFFFF;
+            --gray-600: #4B5563;
+            --gray-500: #6B7280;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-light);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(255,255,255,0.95), rgba(255,255,255,0.7), rgba(255,255,255,0.5));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.75rem, 4vw, 3rem);
+            color: var(--accent);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            max-width: 600px;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            max-width: 550px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(76,175,80,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76,175,80,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(76,175,80,0.1);
+        }
+
+        /* Categories */
+        .categories {
+            padding: 4rem 1rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--gray-500);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .category-img {
+            position: relative;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .category-card:hover .category-img img {
+            transform: scale(1.05);
+        }
+
+        .category-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+        }
+
+        .category-info {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            color: white;
+            z-index: 1;
+        }
+
+        .category-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+
+        .category-info span {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .category-desc {
+            padding: 1rem;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        /* Products View */
+        .products-view {
+            display: none;
+            padding: 2rem 1rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .products-view.active {
+            display: block;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: rgba(76,175,80,0.3);
+        }
+
+        .product-card h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        .product-card:hover h4 {
+            color: var(--primary-dark);
+        }
+
+        .product-card p {
+            color: var(--gray-500);
+            font-size: 0.875rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-badge {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 4px 12px;
+            background: var(--bg-light);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #E8F5E9;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .modal-header h3 {
+            color: var(--accent);
+            font-size: 1.25rem;
+            padding-right: 1rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: #999;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .product-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .product-section h5 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--gray-500);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .product-section p {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .price-box {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .price-box h5 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--gray-500);
+            margin-bottom: 4px;
+        }
+
+        .price-box p {
+            color: var(--accent);
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #E8F5E9;
+        }
+
+        .modal-footer .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            border-top: 1px solid #E8F5E9;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .footer-brand p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            max-width: 400px;
+        }
+
+        .footer h4 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gray-600);
+            text-decoration: none;
+            margin-bottom: 0.75rem;
+            transition: color 0.2s;
+        }
+
+        .footer-contact a:hover {
+            color: var(--primary);
+        }
+
+        .footer-contact svg {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #E8F5E9;
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* Hidden */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+
+            .hero-content {
+                padding: 2rem 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo" onclick="showHome()">
+                <img src="images/logo.png" alt="Distgroup">
+                <span class="logo-text">Distgroup</span>
+            </a>
+            <nav class="nav">
+                <a href="#" onclick="showHome()">Главная</a>
+                <a href="mailto:info@distgroup.ru">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="images/hero-bg.png" alt="Натуральные компоненты">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Натуральные компоненты для производства косметики</h1>
+            <p>Официальный дистрибьютор АО "Алуштинский эфиромасличный совхоз-завод" и ООО «Ароматы натуральных растений Абхазии»</p>
+            <div class="btn-group">
+                <a href="mailto:info@distgroup.ru" class="btn btn-primary">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Связаться с нами
+                </a>
+                <button class="btn btn-outline" onclick="scrollToCategories()">Смотреть каталог</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="section-title">
+            <h2>Наши категории</h2>
+            <p>Выберите интересующую категорию для просмотра продукции</p>
+        </div>
+        <div class="categories-grid" id="categoriesGrid">
+            <!-- Categories will be rendered by JS -->
+        </div>
+    </section>
+
+    <!-- Products View -->
+    <section class="products-view" id="productsView">
+        <button class="back-btn" onclick="showHome()">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            Назад к категориям
+        </button>
+        <div class="category-header">
+            <div class="category-icon" id="categoryIcon">🌿</div>
+            <div>
+                <h2 id="categoryTitle" style="color: var(--accent); font-size: 1.75rem;"></h2>
+                <p id="categoryDesc" style="color: var(--gray-500);"></p>
+            </div>
+        </div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be rendered by JS -->
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="product-section" id="modalComposition">
+                    <h5>Состав / Описание</h5>
+                    <p id="modalCompositionText"></p>
+                </div>
+                <div class="price-box">
+                    <h5>Цена за 1 литр</h5>
+                    <p id="modalPrice1L"></p>
+                </div>
+                <div class="price-box">
+                    <h5>Цена за 100 литров</h5>
+                    <p id="modalPrice100L"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="modalEmail" class="btn btn-primary">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Запросить цену
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo" onclick="showHome()">
+                    <img src="images/logo.png" alt="Distgroup" width="40" height="40">
+                    <span class="logo-text">Distgroup</span>
+                </a>
+                <p>Официальный дистрибьютор АО "Алуштинский эфиромасличный совхоз-завод" и ООО «Ароматы натуральных растений Абхазии»</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Контакты</h4>
+                <a href="mailto:info@distgroup.ru">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    info@distgroup.ru
+                </a>
+                <a href="tel:+7">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                    +7 (XXX) XXX-XX-XX
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Distgroup. Все права защищены.
+        </div>
+    </footer>
+
+    <script>
+        // Data
+        const categories = [
+            {
+                id: 'essential-oils',
+                name: 'Эфирные масла',
+                description: 'Концентрированные натуральные масла, полученные методом дистилляции из цветов, листьев, корней и других частей растений. Используются в парфюмерии, косметике и ароматерапии.',
+                icon: '💧',
+                image: 'images/categories/efirnye-masla.png',
+                products: [
+                    { name: 'Иссоп', composition: 'Hyssopus officinalis. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Кедр', composition: 'Cedrus atlantica Manetti. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Кориандр', composition: 'Coriandrum sativum. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Горная лаванда', composition: 'Lavandula angustifolia. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Степная лаванда', composition: 'Lavandula angustifolia. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Розмарин', composition: 'Salvia Rosmarinus. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Сосна Крымская', composition: 'Pinus nigra subsp. pallasiana. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Шалфей', composition: 'Salvia sclarea. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Можжевельник', composition: 'Juniperus communis. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Кипарис', composition: 'Cupressus sempervirens. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Апельсин', composition: 'Citrus sinensis I. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Вербена', composition: 'Lippia Citriodora. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Герань', composition: 'Pelargonium Capitatum. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Грейпфрут', composition: 'Citrus Paradisi. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Иланг-иланг', composition: 'Cananga Odorata. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Лимон', composition: 'Citrus Limonum Risso. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Литсея кубеба', composition: 'Litsea Cubeba. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Мандарин', composition: 'Citrus Reticulata Blanco. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Петигрейн (мандарин)', composition: 'Citrus Reticulata. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Мята кудрявая', composition: 'Mentha spicata. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Мята', composition: 'Mentha Piperita. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Пачули', composition: 'Pogostemon Cablin. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Пальмароза', composition: 'Cymbopogon martini. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Пихта', composition: 'Abies alba. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Роза', composition: 'Rosa × damascena Mill. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Чайное дерево', composition: 'Melaleuca alternifolia. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Эвкалипт', composition: 'Eucalyptus Globulus. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Бергамот', composition: 'Citrus bergamia. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Померанец', composition: 'Citrus aurantium. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Сандал', composition: 'Santalum album. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Ветивер', composition: 'Chrysopogon zizanioides. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Нероли', composition: 'Citrus aurantium amara. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Жасмин', composition: 'Jasminum officinale. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Имбирь', composition: 'Zingiber officinale. 100% натуральное эфирное масло', price1L: 'Договорная', price100L: 'Договорная' }
+                ]
+            },
+            {
+                id: 'hydrolates',
+                name: 'Гидролаты',
+                description: 'Цветочные воды, полученные в процессе паровой дистилляции растений. Мягкие и безопасные тонизирующие средства для кожи.',
+                icon: '✨',
+                image: 'images/categories/gidrolyaty.png',
+                products: [
+                    { name: 'Гидролат Василек', composition: 'Centaurea cyanus L. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Иссоп', composition: 'Hyssopus officinalis. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Кипарис', composition: 'Cupressus sempervirens. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Лаванда', composition: 'Lavandula angustifolia. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Липа', composition: 'Tilia cordata. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Роза', composition: 'Rosa × damascena Mill. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Розмарин', composition: 'Rosmarinus Officinalis. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Ромашка', composition: 'Matricaria recutita. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Шалфей', composition: 'Salvia sclarea. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Сосна', composition: 'Pinus nigra subsp. pallasiana. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Иссоп-молочай', composition: 'Hyssopus officinalis. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Эвкалипт шаровидный', composition: 'Eucalyptus Globulus. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Мандарин', composition: 'Citrus Reticulata Blanco. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Петигрейн (мандарин)', composition: 'Citrus Reticulata Blanco. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Лавр Благородный', composition: 'Laurus nobilis. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Криптомерия японская (хвоя)', composition: 'Cryptomeria japonica. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Криптомерия японская (древесина)', composition: 'Cryptomeria japonica. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Золотарник', composition: 'Solidago canadensis. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Герань розовая', composition: 'Pelargonium graveolens. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Мята кудрявая', composition: 'Mentha spicata. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Гидролат Лаванда узколистная', composition: 'Lavandula angustifolia. Основа (≥ 99.5%): Дистиллированная вода', price1L: 'Договорная', price100L: 'Договорная' }
+                ]
+            },
+            {
+                id: 'co2-extracts',
+                name: 'CO₂ Экстракты',
+                description: 'Высококачественные экстракты, полученные методом сверхкритической CO₂ экстракции. Содержат максимальное количество активных веществ.',
+                icon: '🧪',
+                image: 'images/categories/co2-ekstrakty.png',
+                products: [
+                    { name: 'Виноградная косточка', composition: 'Дубильные вещества, полифенолы, монотерпеновые спирты, альдегиды, витамин Е, комплекс минеральных веществ', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Черный тмин', composition: 'Пальмитиновая кислота (12,6%), олеиновая кислота (22%), линолевая кислота (49%), эфирное масло (2,3%) с тимохиноном (39,4%)', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Мирт', composition: 'Дубильные вещества, полифенолы, монотерпеновые спирты, альдегиды, витамин Е, Limonene, β-Ocimene, Linalool', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Амарант', composition: 'Витамин Е (не менее 2%), сквален (не менее 8%), жирные кислоты (не менее 30%), фитостерины, флавоноиды', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Ладанник', composition: 'Монотерпены, сесквитерпены, дитерпеновые спирты (инсенсол), флавоноиды, комплекс витаминов и минералов', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Иссоп', composition: 'Дубильные вещества, фитонциды, органические кислоты, флавоноиды (диосмин, гесперидин), β-Phellandrene', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Шалфей мускатный', composition: 'Терпеноиды (не менее 20%), жирные кислоты (не менее 30%), фенолы (не менее 14%), флавоноиды (не менее 3%)', price1L: 'Договорная', price100L: 'Договорная' }
+                ]
+            },
+            {
+                id: 'refined-oils',
+                name: 'Рафинированные масла',
+                description: 'Очищенные растительные масла без запаха и цвета. Идеальны для основы косметических средств.',
+                icon: '🧴',
+                image: 'images/categories/rafinirovannye-masla.png',
+                products: [
+                    { name: 'Масло Абрикосовое Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Авокадо Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Арбузное Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Виноградной Косточки Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Грецкого Ореха Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Дынное Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Миндальное Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Оливковое POMACE Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Оливковое Рафинированное EXTRA', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Персиковое Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Семян Шиповника Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Фисташки Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Фундучное (Лесной Орех) Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Кунжутное Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Рыжика Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Конопляное Раф.', composition: 'Натуральное рафинированное масло', price1L: 'Договорная', price100L: 'Договорная' }
+                ]
+            },
+            {
+                id: 'unrefined-oils',
+                name: 'Нерафинированные масла',
+                description: 'Натуральные масла холодного отжима, сохраняющие все полезные вещества и естественный аромат.',
+                icon: '🌿',
+                image: 'images/categories/nerafinirovannye-masla.png',
+                products: [
+                    { name: 'Масло Абрикосовое Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Грецкого Ореха Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Миндальное Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Персиковое Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Виноградной Косточки Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Семян Шиповника Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Авокадо Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Семян Малины Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Фисташки Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Арбузное Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Дынное Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Льняное Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Фундучное (Лесной Орех) Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Граната Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Инжира Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Моркови Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Моркови Нераф. – оранжевое (Египет)', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Сливовой Косточки Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Вишни Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Арахисовое Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Томата Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Огурца Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Черной Смородины Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Тыквенное Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Облепиховое Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Кедровое Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Оливковое Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Какао Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Ши (Карите) Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Кокосовое Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Зародышей Пшеницы Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Рыжиковое Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' },
+                    { name: 'Масло Конопляное Нерафинированное', composition: 'Натуральное нерафинированное масло', price1L: 'Договорная', price100L: 'Договорная' }
+                ]
+            }
+        ];
+
+        // Render categories
+        function renderCategories() {
+            const grid = document.getElementById('categoriesGrid');
+            grid.innerHTML = categories.map(cat => `
+                <div class="category-card" onclick="showCategory('${cat.id}')">
+                    <div class="category-img">
+                        <img src="${cat.image}" alt="${cat.name}">
+                        <div class="category-info">
+                            <h3>${cat.name}</h3>
+                            <span>${cat.products.length} товаров</span>
+                        </div>
+                    </div>
+                    <p class="category-desc">${cat.description}</p>
+                </div>
+            `).join('');
+        }
+
+        // Show category products
+        function showCategory(categoryId) {
+            const category = categories.find(c => c.id === categoryId);
+            if (!category) return;
+
+            document.getElementById('hero').classList.add('hidden');
+            document.getElementById('categories').classList.add('hidden');
+            document.getElementById('productsView').classList.add('active');
+
+            document.getElementById('categoryIcon').textContent = category.icon;
+            document.getElementById('categoryTitle').textContent = category.name;
+            document.getElementById('categoryDesc').textContent = category.description;
+
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = category.products.map(p => `
+                <div class="product-card" onclick="openProductModal('${p.name}', \`${p.composition}\`, '${p.price1L}', '${p.price100L}')">
+                    <h4>${p.name}</h4>
+                    <p>${p.composition}</p>
+                    <span class="product-badge">Подробнее</span>
+                </div>
+            `).join('');
+
+            window.scrollTo(0, 0);
+        }
+
+        // Show home
+        function showHome() {
+            document.getElementById('hero').classList.remove('hidden');
+            document.getElementById('categories').classList.remove('hidden');
+            document.getElementById('productsView').classList.remove('active');
+        }
+
+        // Scroll to categories
+        function scrollToCategories() {
+            document.getElementById('categories').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Open product modal
+        function openProductModal(name, composition, price1L, price100L) {
+            document.getElementById('modalTitle').textContent = name;
+            document.getElementById('modalCompositionText').textContent = composition;
+            document.getElementById('modalPrice1L').textContent = price1L;
+            document.getElementById('modalPrice100L').textContent = price100L;
+            document.getElementById('modalEmail').href = `mailto:info@distgroup.ru?subject=Запрос цены: ${name}`;
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Initialize
+        renderCategories();
+    </script>
+</body>
+</html>
